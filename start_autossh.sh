@@ -6,6 +6,7 @@ if [ -z ${AUTOSSH_HOST_STRING+x} ] || \
 fi
 
 echo ${AUTOSSH_PRIVATE_KEY} > /autossh_id_rsa
+chmod 600 /autossh_id_rsa
 /usr/bin/autossh \
   -M 0 -4 -N \
   ${AUTOSSH_HOST_STRING} \
