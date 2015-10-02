@@ -5,8 +5,10 @@ if [ -z ${AUTOSSH_HOST_STRING+x} ] || \
   while true; do sleep 1h; done
 fi
 
-echo ${AUTOSSH_PRIVATE_KEY} > /autossh_id_rsa
-chmod 600 /autossh_id_rsa
+ID_RSA="/autossh_id_rsa"
+echo ${AUTOSSH_PRIVATE_KEY} > ${ID_RSA}
+sed -i 's/\\n/\n/g' ${ID_RSA}
+chmod 600 ${ID_RSA}
 /usr/bin/autossh \
   -M 0 -4 -N \
   ${AUTOSSH_HOST_STRING} \
